@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/capes-miidle/!svn/ver/110/trunk/Miidle/public
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/public/.htaccess
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/public/index.php
+END

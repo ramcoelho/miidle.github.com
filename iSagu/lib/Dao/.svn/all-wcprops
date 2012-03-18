@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/capes-miidle/!svn/ver/122/trunk/iSagu/lib/Dao
+END
+Curso.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/capes-miidle/!svn/ver/29/trunk/iSagu/lib/Dao/Curso.php
+END
+Generic.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/capes-miidle/!svn/ver/73/trunk/iSagu/lib/Dao/Generic.php
+END
+Aluno.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/capes-miidle/!svn/ver/93/trunk/iSagu/lib/Dao/Aluno.php
+END
+Matricula.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/capes-miidle/!svn/ver/122/trunk/iSagu/lib/Dao/Matricula.php
+END
+Nota.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/capes-miidle/!svn/ver/122/trunk/iSagu/lib/Dao/Nota.php
+END
+Professor.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/capes-miidle/!svn/ver/77/trunk/iSagu/lib/Dao/Professor.php
+END
+Turma.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/capes-miidle/!svn/ver/120/trunk/iSagu/lib/Dao/Turma.php
+END

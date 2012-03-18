@@ -1,0 +1,80 @@
+10
+
+dir
+122
+https://subversion.assembla.com/svn/capes-miidle/trunk/Miidle
+https://subversion.assembla.com/svn/capes-miidle
+
+
+
+2012-01-29T06:39:59.996237Z
+119
+ram.coelho
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+51e5d135-ebeb-4af0-b150-dc028d4793b1
+
+tests
+dir
+
+application
+dir
+
+.zfproject.xml
+file
+
+
+
+
+2012-03-18T19:43:28.138211Z
+ea43f9e5cec731a6342be6398e1adbaa
+2012-01-29T06:38:50.697278Z
+118
+ram.coelho
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4196
+
+library
+dir
+
+docs
+dir
+
+data
+dir
+
+public
+dir
+

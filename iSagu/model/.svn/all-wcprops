@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/capes-miidle/!svn/ver/113/trunk/iSagu/model
+END
+aluno.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/capes-miidle/!svn/ver/76/trunk/iSagu/model/aluno.php
+END
+matricula.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/capes-miidle/!svn/ver/76/trunk/iSagu/model/matricula.php
+END
+nota.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/capes-miidle/!svn/ver/113/trunk/iSagu/model/nota.php
+END
+professor.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/capes-miidle/!svn/ver/76/trunk/iSagu/model/professor.php
+END
+turma.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/capes-miidle/!svn/ver/87/trunk/iSagu/model/turma.php
+END

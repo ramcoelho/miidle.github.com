@@ -1,0 +1,101 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+#logo {
+	margin: 2em;
+}
+#mensagem {
+	width: 30em;
+	padding: 3em 0;
+	text-align: center;
+	vertical-align: center;
+	margin: 4em auto;
+	border-radius: 1em;
+	background-color: #f0f0f0;
+}
+#log {
+	
+}
+.log-entry {
+	width: 100%;
+	clear: both;
+}
+.log-entry div {
+	float: left;
+	margin: 0.1em;
+	padding: 0.2em;
+}
+.log-header div {
+	color: white;
+	font-weight: bold;
+	background-color: #000000;
+}
+.log-entry div.dados {
+	background-color: #d0d0d0;
+}
+.log-entry .id {
+	width: 5em;
+}
+.log-entry .origin {
+	width: 15em;
+}
+.log-entry .destination {
+	width: 15em;
+}
+.log-entry .time-stamp {
+	width: 9em;
+}
+.log-entry .message {
+	width: 30em;
+	display: block;
+}
+#log-label {
+	font-size: 1.5em;
+}
+#paginacao {
+	clear: both;
+	width: 50em;
+	margin: 4em auto;
+}
+.pagina {
+	float: left;
+	width: 2em;
+	height: 2em;
+}
+.pagina a {
+	text-decoration: none;
+	padding: 0.3em;
+	border-radius: 1em;
+	background-color: black;
+	color: white;
+}
+.pagina a.selected {
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+}
+.mensagem {
+	font-size: 0.8em;
+	border-radius: 0.5em;
+}
+.mensagem-erro {
+	background-color: #aa0000;
+	color: white;
+}
+.mensagem-vazio {
+	background-color: #0000aa;
+	color: white;
+}
+.mensagem-registros {
+	background-color: #eeee00;
+	color: black;
+}
+.mensagem-escalar {
+	background-color: #00aaaa;
+	color: white;
+}
+.mensagem-operacao {
+	background-color: #00aa00;
+	color: white;
+}

@@ -1,0 +1,152 @@
+Todas mensagens de criação ou alteração de informações utilizam a mesma ação. Se for informado um id prévio, a interface entenderá que trata-se de um UPDATE. Caso contrário, um INSERT. A interface deve enviar um JSON de resposta, no formato:
+
+{id: 0,result: bool,message:''}
+
+Onde, id é valor do campo PK da tabela, no registro inserido, excluído ou atualizado;
+result é verdadeiro ou falso, indicando se a operação foi bem sucedida;
+message contém a mensagem de uma possível Exception que tenha ocorrido na interface remota, a fim de gerar log no Miidle.
+
+As mensagens de exclusão possuem apenas o id do registro no sistema destino e retornam o mesmo JSON definido acima.
+
+Para as mensagens de Retrieve (SELECT), a interface deve enviar um JSON de resposta, no formato:
+
+{result:[{},{},{},...,{}]}
+
+Onde, {} são objetos arbitrários, que correspondem à estrutura dos dados solicitados.
+
+
+Seguem as ações de mensageria
+
+Criação de usuário
+
+  O administrador cria um professor ou um aluno no Sagu, que resulta na criação de um usuário Moodle. O conceito de aluno ou professor não é atribuído ao usuário nesta etapa. A separação do primeiro e último nomes do usuário é realizada no iMoo.
+
+Origem: iSagu
+URI Origem: http://server/isagu/professor/consultar.json e http://server/isagu/aluno/consultar.json
+Destino: iMoo
+URI Destino: http://server/imoo/usuario/salvar.json
+Tabela: basphysicalpersonstudent e basphysicalpersonprofessor
+Chave: personid
+Gatilho: Incremento do personid
+Mapeamento: mdl_user (id)
+Mensagem:
+{nome:'Nome Completo do Usuario',email:'',username:'',password:''}
+
+
+
+
+
+Criação de Turma
+
+  O administrador cria uma turma no Sagu, que acarreta a criação de um curso no Moodle. O registro é informativo e nenhum aluno ou professor será associado nesta etapa.
+
+Origem: iSagu
+URI Origem: http://server/isagu/turma/consultar.json
+Destino: iMoo
+URI Destino: http://server/imoo/curso/salvar.json
+Tabela: acdclass
+Chave: classid
+Gatilho: Incremento do classid
+Mapeamento: mdl_course (id)
+Mensagem:
+{nome:'Nome completo do curso'}
+
+
+
+
+Associar professor
+
+  O administrador "oferece" o curso no Sagu, informando quem será o instrutor. Esta mensagem realiza o relacionamento de um usuário com um curso, no contexto de professor. Os id's informados são do Moodle.
+
+Origem: iSagu
+URI Origem: http://server/isagu/turma/consultar.json
+Destino: iMoo
+URI Destino: http://server/imoo/curso/salvar.json
+Tabela: acdgroup
+Chave: groupid
+Gatilho: Incremento do groupid
+Mapeamento: mdl_role_assignments (id)
+Mensagem:
+{idCurso: 0,idUsuario: 0}
+
+
+
+
+Matricular Alunos na Turma
+
+  O administrador associa os alunos a uma turma, resultando na associação dos usuários indicados na turma sob o contexto de alunos. Os id's informados são do Moodle.
+
+Origem: iSagu
+URI Origem: http://server/isagu/matricula/consultar.json
+Destino: iMoo
+URI Destino: http://server/imoo/curso/matricular.json
+Tabela: acdenroll
+Chave: enrollid
+Gatilho: Incremento do enrollid
+Mapeamento: mdl_role_assignments (id)
+Mensagem:
+{idCurso: 0,idUsuarios: [0,1,2,3]}
+
+
+
+Consolidação da Turma
+
+  O professor encerra a turma, resultando no envio das notas finais, faltas e conceitos para o Sagu. Os id's listados são do Sagu. A consulta para retornar a nota final é a seguinte:
+
+SELECT g.id,g.itemid,g.userid,g.finalgrade, i.itemtype, g.timemodified
+FROM mdl_grade_grades g 
+INNER JOIN mdl_grade_items i ON g.itemid=i.id 
+WHERE i.courseid=6 and userid=13 and i.itemtype ='course' order by i.id
+
+Origem: iMoo
+URI Origem: http://server/imoo/nota/consultar.json
+Destino: iSagu
+URI Destino: http://server/isagu/nota/salvar.json
+Tabela: mdl_grade_items e mdl_grade_grades
+Chave: id
+Gatilho: Mudança do MAX(timemodified) dos itens com itemtype != "course"
+Mapeamento: acdenroll (enrollid)
+Mensagem:
+{"results":[{"_id_op":"47","id":"2","id_curso":"6","id_aluno":"13","nota":"88.50000"}, ... ]}
+
+
+
+
+Para atender aos casos de atualização (INSERTs, DELETEs e UPDATEs), precisamos guardar quais registros sofreram alterações
+Sob esta ótica, existem dois tipos de SGBDs possíveis: com ou sem suporte a triggers.
+Em ambos os casos, a implementação deve se dar com uma "tabela espelho" para cada tabela que se deseja controlar alterações.
+Estas tabelas NÃO devem conter relações de chave estrangeira com a tabela de dados, para evitar interferir na operação normal do sistema, mas devem ser estruturadas como se tivessem tais relações.
+As tabelas espelho devem conter apenas um campo de controle, cujo propósito será definido pela existência ou não do suporte a triggers.
+
+Ex.:
+
+Professores - id INT, nome VARCHAR(255), username VARCHAR(255), endereco TEXT
+
+A tabela espelho deve conter:
+
+Sem Triggers: Professores_esp - id INT, id_fk INT, hash VARCHAR(255)
+Com Triggers: Professores_esp - id INT, id_fk INT, operacao CHAR(1)
+
+Como se pode perceber acima, nos bancos com suporte a triggers, o campo de controle deverá guardar a operação a ser executada pelo Middle (inclusão, alteração ou exclusão).
+Para cada operação DML que ocorrer, o código do trigger deve incluir um registro na tabela espelho, indicando qual operação será realizada na base externa e qual o id do registro sensibilizado.
+
+Nos bancos sem suporte a triggers, o campo de controle deverá guardar um hash (md5, sha1, que deve ser suportado nativamente pelo banco) calculado com base nos valores dos campos que se deseja controlar. No exemplo acima, nome e username. Ignora-se os demais campos (id e endereco), pois suas alterações não são aproveitadas pelo sistema externo.
+
+Um webservice na interface (iAcad) deve retornar quais registros sofreram alterações. No caso do banco com suporte a triggers, basta retornar os dados obtidos através de um join da tabela monitorada e a tabela espelho, informando a operação.
+No caso de não haver triggers, a operação é feita em três etapas. De início, verifica-se quais registros existem na tabela de dados e não na tabela espelho. São os registros novos, elencados sob a operação "I". Em seguida, verifica-se quais existem na tabela espelho e faltam na de dados. São os registros excluídos, associados à operação "D". Por fim, realiza-se um join entre as tabelas, exibindo quais delas possuem registros alterados nos campos controlados, comparando-se os hashs arquivados na tabela espelho com aqueles calculados dinamicamente (por isto é importante que o algoritmo de hash usado seja suportado nativamente pelo banco), associados à operação "A".
+Estes registros são retornados para o Miidle, que executará os ajustes necessários em sua base e no sistema externo. A interface não deve alterar a tabela espelho neste momento.
+Para cada registro atualizado, o Miidle deverá chamar uma ação de atualização do registro da tabela espelho, provida pela mesma interface em questão. Os dados passados são os mesmos enviados pelo webservice de consulta, que, nos casos de não haver suporte a triggers, deverá calcular o hash apropriado e atualizar a base, seja incluindo os novos registros, alterando os hashes existentes ou excluindo o registro da tabela espelho, ou, no caso da solução com triggers, excluir o registro equivalente da tabela espelho.
+
+Quando consultada sobre alterações em uma determinada entidade, a interface deve retornar o seguinte formato de JSON:
+
+{result:[
+	{operacao:'A',data:{id:15,nome:'Morpheus',...,campo:'valor'}},
+	{operacao:'I',data:{id:19,nome:'Trinity',...,campo:'valor'}},
+	{operacao:'D',data:{id:25,nome:'Mouse',...,campo:'valor'}},
+	{operacao:'I',data:{id:42,nome:'Neo',...,campo:'valor'}}
+]}
+
+A mensagem de atualização das tabelas espelho seguirá o padrão abaixo:
+
+{operacao:'A',data:{id:15,nome:'Morpheus',...,campo:'valor'}}
+

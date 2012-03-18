@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/capes-miidle/!svn/ver/94/trunk/Miidle/tests/application/controllers
+END
+IndexControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/tests/application/controllers/IndexControllerTest.php
+END
+TurmaControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/capes-miidle/!svn/ver/48/trunk/Miidle/tests/application/controllers/TurmaControllerTest.php
+END
+AlunoControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/capes-miidle/!svn/ver/48/trunk/Miidle/tests/application/controllers/AlunoControllerTest.php
+END
+LogControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/capes-miidle/!svn/ver/94/trunk/Miidle/tests/application/controllers/LogControllerTest.php
+END
+NotaControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/capes-miidle/!svn/ver/48/trunk/Miidle/tests/application/controllers/NotaControllerTest.php
+END
+ProfessorControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/capes-miidle/!svn/ver/48/trunk/Miidle/tests/application/controllers/ProfessorControllerTest.php
+END

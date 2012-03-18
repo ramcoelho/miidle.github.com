@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/capes-miidle/!svn/ver/121/trunk/iMoo/lib/Dao
+END
+Curso.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/capes-miidle/!svn/ver/45/trunk/iMoo/lib/Dao/Curso.php
+END
+Generic.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/capes-miidle/!svn/ver/51/trunk/iMoo/lib/Dao/Generic.php
+END
+Nota.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/capes-miidle/!svn/ver/121/trunk/iMoo/lib/Dao/Nota.php
+END
+Grade.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/capes-miidle/!svn/ver/14/trunk/iMoo/lib/Dao/Grade.php
+END
+Usuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/capes-miidle/!svn/ver/40/trunk/iMoo/lib/Dao/Usuario.php
+END

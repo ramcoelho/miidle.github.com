@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/capes-miidle/!svn/ver/118/trunk/Miidle/application/controllers
+END
+IndexController.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/capes-miidle/!svn/ver/118/trunk/Miidle/application/controllers/IndexController.php
+END
+TurmaController.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/capes-miidle/!svn/ver/97/trunk/Miidle/application/controllers/TurmaController.php
+END
+ErrorController.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/application/controllers/ErrorController.php
+END
+AlunoController.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/capes-miidle/!svn/ver/97/trunk/Miidle/application/controllers/AlunoController.php
+END
+LogController.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/capes-miidle/!svn/ver/103/trunk/Miidle/application/controllers/LogController.php
+END
+NotaController.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/capes-miidle/!svn/ver/99/trunk/Miidle/application/controllers/NotaController.php
+END
+ProfessorController.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/capes-miidle/!svn/ver/118/trunk/Miidle/application/controllers/ProfessorController.php
+END

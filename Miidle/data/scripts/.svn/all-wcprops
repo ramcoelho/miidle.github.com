@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/capes-miidle/!svn/ver/91/trunk/Miidle/data/scripts
+END
+load.sqlite.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/data/scripts/load.sqlite.php
+END
+data.sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/capes-miidle/!svn/ver/8/trunk/Miidle/data/scripts/data.sqlite.sql
+END
+schema.sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/capes-miidle/!svn/ver/91/trunk/Miidle/data/scripts/schema.sqlite.sql
+END

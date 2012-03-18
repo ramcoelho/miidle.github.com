@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="<?=BASEURI;?>/css/miidle.css"></link>
+</head>
+<body>
+<div id='logo'><img src="<?=BASEURI;?>/img/miidle_logo.png" /></div>
+<?php if((!isset($this->disable_message)) || (!$this->disable_message)): ?>
+<div id='mensagem'>Operação finalizada.</div>
+<?php endif; ?>
+<?php //die(); ?>
+<?php if(isset($this->log_entries)): ?>
+	<?php if((!isset($this->disable_message)) || (!$this->disable_message)): ?>
+<div id='log-label'>Operações executadas:</div>
+	<?php endif; ?>
+	<?php if(isset($this->show_pages) && ($this->show_pages)): ?>
+	<?php $nav_paginas = $this->renderNav($this->pagina, $this->page_count, BASEURI . '/log/show/page/');?>
+	<div id='paginacao'>
+		<?php foreach($nav_paginas as $link): ?>
+			<div class='pagina'><?=$link;?></div>
+		<?php endforeach; ?>
+	</div>
+	<?php endif; ?>
+<div id='log'>
+	<div class='log-entry log-header'>
+		<div class='id'>#</div>
+		<div class='time-stamp'>Data e Hora</div>
+		<div class='origin'>Origem</div>
+		<div class='destination'>Destino</div>
+		<div class='message'>Mensagem</div>
+	</div>
+	<?php foreach($this->log_entries as $log_entry): ?>
+	<div class='log-entry'>
+		<div class='id dados'>&nbsp;<?=$log_entry->getId();?></div>
+		<div class='time-stamp dados'>&nbsp;<?=$this->converteData($log_entry->getTstamp());?></div>
+		<div class='origin dados'>&nbsp;<?=$log_entry->getOrigin();?></div>
+		<div class='destination dados'>&nbsp;<?=$log_entry->getDestination();?></div>
+		<div class='message dados' title='<?=str_replace("'", '', $log_entry->getMessage());?>'><?=$this->renderMessage($log_entry->getMessage());?></div>
+	</div>
+	<?php endforeach; ?>
+</div>
+	<?php if(isset($this->show_pages) && ($this->show_pages)): ?>
+	<div id='paginacao'>
+	<?php foreach($nav_paginas as $link): ?>
+		<div class='pagina'><?=$link;?></div>
+	<?php endforeach; ?>
+	</div>
+	<?php endif; ?>
+<?php endif; ?>
+</body>
+</html>
